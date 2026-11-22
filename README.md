@@ -73,9 +73,9 @@ The external agent should:
 1. Discover an authorized online browser.
 2. Start a task with a goal and initial domains; capability hints do not restrict tool access.
 3. Read current task state and observations.
-4. Perform or delegate a bounded next step.
+4. Perform a bounded next step from the current page evidence. If a repeatable workflow warrants it, optionally search or read an available Skill; normal tasks require no Skill lookup.
 5. Pause for required user input and resolve uncertain effects from fresh page evidence; never repeat uncertain steps automatically.
-6. Verify the outcome, then finish or report blocked.
+6. Verify the outcome, then finish or report blocked. The retired Decision Model subgoal tool is not offered by the current MCP surface.
 
 ## Verification and limitations
 
@@ -119,4 +119,4 @@ Generations above are illustrative; replace them with current state. Full-docume
 
 REST responses use `interactionGeneration`, and `/respond` takes `{"interactionGeneration":4,"action":{"kind":"done","summary":"Read heading","expectedOutcome":{"criteria":[{"kind":"text_contains","value":"Example Domain"}]}}}`. OAuth uses `task_done` with the same action fields plus `task_id` and `interaction_generation`; agent keys wrap `kind: done` in `task_respond`.
 
-Reuse an explicit MCP `idempotency_key` only for identical creation retries; request IDs alone do not deduplicate tasks. Every task holds all capabilities. Standard asks only before payments/purchases, sign-in and account/security changes, deleting, sending/publishing, files and passwords/secrets. Developer adds no mode confirmations; immutable task confirmations, Chrome host access and manual inputs still apply. Resolve uncertain effects from fresh observations and never replay them.
+Reuse an explicit MCP `idempotency_key` only for identical creation retries; request IDs alone do not deduplicate tasks. Every task holds all capabilities. Standard asks only before payments/purchases, sign-in and account/security changes, deleting, sending/publishing and passwords/secrets. Uploads and downloads are enabled by default under separate account file controls, and selecting a local file remains a user action. Developer adds no mode confirmations; immutable task confirmations, Chrome host access and manual inputs still apply. Resolve uncertain effects from fresh observations and never replay them.
