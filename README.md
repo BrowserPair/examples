@@ -6,6 +6,7 @@ Small integration examples for [BrowserPair](https://browserpair.com/), connecti
 
 | Example | What it demonstrates |
 | --- | --- |
+| [ChatGPT plugin](https://chatgpt.com/plugins/plugin_asdk_app_6ac5859a310c8191b959b4cfd69b2668) | Connect BrowserPair directly in ChatGPT; no custom MCP setup or agent key |
 | [REST starter](rest.mjs) | Discover browsers, create one bounded task, inspect state and cancel |
 | [MCP connection recipe](#connect-an-mcp-client) | Connect your existing AI app and follow the durable task lifecycle |
 
@@ -14,7 +15,7 @@ These examples use the [published REST contract](https://docs.browserpair.com/re
 ## Prerequisites
 
 - Pair the [Chrome extension](https://chromewebstore.google.com/detail/agdomhjeahcbelohnmjmbldeldclnoof) in the [BrowserPair app](https://app.browserpair.com/).
-- Create an agent key scoped to the intended browser. Both permission modes allow every website/tool; initial domains describe the task, not a key allow list.
+- For the REST starter, create an agent key scoped to the intended browser. ChatGPT's published plugin and other supported OAuth connections do not need a copied agent key. Both permission modes allow every website/tool; initial domains describe the task, not a key allow list.
 - Install Node.js 20 or later for the REST starter.
 
 Keep the agent key in your local environment. Never commit it, put it in a URL or paste it into an Issue. Your browser-device credential is different from an agent key.
@@ -60,7 +61,9 @@ The starter intentionally does not send arbitrary click or form actions. A full 
 
 ## Connect an MCP client
 
-Use the remote server URL:
+For ChatGPT, open the [published BrowserPair plugin](https://chatgpt.com/plugins/plugin_asdk_app_6ac5859a310c8191b959b4cfd69b2668), choose **Connect**, and authorize the intended Chrome browser. The plugin uses OAuth; you do not need ChatGPT Developer mode or a manually configured MCP server for this route.
+
+For Claude and other supported MCP clients, use the remote server URL:
 
 ```text
 https://mcp.browserpair.com
